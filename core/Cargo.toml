@@ -1,8 +1,13 @@
 [package]
-name = "projectos-core"
+name = "schoolos-core"
 version = "0.1.0"
 edition = "2021"
+authors = ["GaryCraft"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+rocket = { version = "0.5.0-rc.2", features = ["json"] }
+diesel = { version = "2.0", features = ["postgres"] }
+serde = { version = "1.0", features = ["derive"] }
+rocket_contrib = { version = "0.4.11", default-features = false, features = ["json"] }

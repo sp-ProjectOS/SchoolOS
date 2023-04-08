@@ -6,9 +6,10 @@
 				<Loading />
 			</template>
 		</ClientOnly>
-		<OverlayedUI  class="overlayed-ui">
+		<!-- <OverlayedUI  class="overlayed-ui">
 			<NavBar />
-		</OverlayedUI>
+		</OverlayedUI> -->
+		<NavBar />
 	</div>
 </template>
 <style>
