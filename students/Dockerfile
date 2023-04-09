@@ -13,7 +13,7 @@ RUN npm install
 RUN npm run build
 
 ## Build the image with alpine, run with node (nuxtjs)
-FROM node:18-alpine3.14
+FROM node:18-alpine3.14 as runner
 WORKDIR /usr/src/schoolos-students
 USER root
 

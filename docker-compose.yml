@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  # Core
+  core-db:
+    image: postgres:latest
+    container_name: core-db
+    restart: always
+    environment:
+      POSTGRES_USER: core
+      POSTGRES_PASSWORD: core
+      POSTGRES_DB: core
+    volumes:
+      - ./data/core-db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - core-network
+  
+  ## Run ./core/dockerfile
+  core:
+    build: ./core
+    container_name: core
+    restart: always
+    environment:
+      POSTGRES_USER: core
+      POSTGRES_PASSWORD: core
+      POSTGRES_DB: core
+      POSTGRES_HOST: core-db
+      POSTGRES_PORT: 5432
+    ports:
+      - "8000:8000"
+    networks:
+      - core-network
+    depends_on:
+      - core-db
+  
+  # Students
+  # (Nuxt Runs as frontend and backend)
+  students:
+    build: ./students
+    container_name: students
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - students-network
+    depends_on:
+      - core
+  
+  # General
+networks:
+  core-network:
+  students-network:
