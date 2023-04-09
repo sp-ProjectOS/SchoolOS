@@ -1,15 +1,11 @@
 extern crate diesel;
 extern crate rocket;
 use crate::models;
-use crate::models::Group;
-use crate::services::establish_connection_pg;
 use crate::services::MessageJson;
 use crate::services::Result;
-use diesel::RunQueryDsl;
 use rocket::response::status::Created;
 use rocket::serde::{json::Json, Deserialize, Serialize};
 use rocket::{get, post};
-use std::iter::Iterator;
 
 #[derive(Serialize, Deserialize)]
 pub struct NewGroup {
@@ -19,7 +15,7 @@ pub struct NewGroup {
 
 #[post("/group", data = "<groupq>")]
 pub fn create_group(groupq: Json<NewGroup>) -> Result<Created<Json<NewGroup>>> {
-    let connection = &mut establish_connection_pg();
+    /* let connection = &mut establish_connection_pg();
     let next_id_statement = diesel::select(diesel::dsl::sql::<diesel::sql_types::BigInt>(
         "nextval('groups_auto_id_seq')",
     ));
@@ -58,34 +54,44 @@ pub fn create_group(groupq: Json<NewGroup>) -> Result<Created<Json<NewGroup>>> {
         Err(e) => Err(Json(MessageJson {
             message: format!("Error saving new group: {}", e),
         })),
-    }
+    } */
+
+	// Example Create-Group route
+	Ok(Created::new("/").body(groupq))
 }
 
 #[get("/groups")]
 pub fn list_groups() -> Result<Json<Vec<models::Group>>> {
-    use self::models::Group;
-    let connection = &mut establish_connection_pg();
-    let results = crate::schema::groups::table
-        .load::<Group>(connection)
-        .expect("Error loading groups");
-    Ok(Json(results))
+    // Example List-Groups route
+    Ok(Json(vec![
+        models::Group {
+            auto_id: 1,
+            external_id: "1".to_string(),
+            name: "Group 1".to_string(),
+            created_at: std::time::SystemTime::now().into(),
+            updated_at: std::time::SystemTime::now().into(),
+        },
+        models::Group {
+            auto_id: 2,
+            external_id: "2".to_string(),
+            name: "Group 2".to_string(),
+            created_at: std::time::SystemTime::now().into(),
+            updated_at: std::time::SystemTime::now().into(),
+        },
+        models::Group {
+            auto_id: 3,
+            external_id: "3".to_string(),
+            name: "Group 3".to_string(),
+            created_at: std::time::SystemTime::now().into(),
+            updated_at: std::time::SystemTime::now().into(),
+        },
+    ]))
 }
 
 #[delete("/groups/<group_id>")]
 pub fn delete_group(group_id: i32) -> Result<Json<MessageJson>> {
-    let connection = &mut establish_connection_pg();
-    match diesel::delete(
-		crate::schema::groups::dsl::groups.load(connection).unwrap()
-		.iter()
-		.filter(|group: &&Group| group.auto_id == group_id as i64)
-		.collect::<Vec<&Group>>()[0]
-	)
-	{
-		Ok(_) => Ok(Json(MessageJson {
-			message: format!("Group {} deleted", group_id),
-		})),
-		Err(e) => Err(Json(MessageJson {
-			message: format!("Error deleting group: {}", e),
-		})),
-	}
+    // Example Delete-Group route
+    Ok(Json(MessageJson {
+        message: format!("Deleted group {}", group_id),
+    }))
 }
