@@ -1,5 +1,5 @@
 {
-	"name": "schoolos-students",
+	"name": "@schoolos/students",
 	"private": true,
 	"scripts": {
 		"build": "nuxt build",

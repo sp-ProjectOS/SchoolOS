@@ -1,9 +1,9 @@
 <template>
 	<div class="bottom-nav">
 		<div class="bottom-nav__item">
-			<RouterLink :to="link.to" v-for="link in links" :key="link.name">
+			<NuxtLink :to="link.to" v-for="link in links" :key="link.name">
 				<Icon :name="link.icon.name" :size="link.icon.size" :color="link.icon.color" />
-			</RouterLink>
+			</NuxtLink>
 		</div>
 	</div>
 </template>
