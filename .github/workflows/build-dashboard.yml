@@ -1,4 +1,4 @@
-name: Release
+name: Build Dashboard
 on:
   push:
     tags:
@@ -14,7 +14,9 @@ jobs:
       matrix:
         platform: [macos-latest, ubuntu-20.04, windows-latest]
     runs-on: ${{ matrix.platform }}
-
+    defaults:
+      run:
+        working-directory: admins
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -32,7 +34,7 @@ jobs:
       - name: Rust cache
         uses: swatinem/rust-cache@v2
         with:
-          workspaces: "./admins/src-tauri -> target"
+          workspaces: "./src-tauri -> target"
 
       - name: Sync node version and setup cache
         uses: actions/setup-node@v3
@@ -42,7 +44,7 @@ jobs:
 
       - name: Install frontend dependencies
         # If you don't have `beforeBuildCommand` configured you may want to build your frontend here too.
-        run: npm i # Change this to npm, yarn or pnpm.
+        run: npm install # Change this to npm, yarn or pnpm.
 
       - name: Build the app
         uses: tauri-apps/tauri-action@v0
