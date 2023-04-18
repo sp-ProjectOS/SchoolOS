@@ -2,17 +2,6 @@ import { defineStore } from "pinia";
 import * as styles from "@/styles";
 import { darkModeKey, styleKey } from "@/config";
 
-import { invoke } from "@tauri-apps/api";
-
-
-const getDarkMode = () => {
-	let darkMode = false;
-	invoke("get_local_preferences").then((preferences) => {
-		console.log(preferences);
-		preferences.darkMode ? darkMode = true : darkMode = false;
-	});
-	return darkMode;
-};
 export const useStyleStore = defineStore("style", {
   state: () => ({
     /* Styles */
@@ -28,7 +17,7 @@ export const useStyleStore = defineStore("style", {
     overlayStyle: "",
 
     /* Dark mode */
-    darkMode: getDarkMode(),
+    darkMode: false
   }),
   actions: {
     setStyle(payload) {

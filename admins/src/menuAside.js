@@ -18,7 +18,7 @@ export default [
     icon: mdiMonitor,
     label: "Dashboard",
   },
-  {
+  /* {
     to: "/tables",
     label: "Tables",
     icon: mdiTable,
@@ -39,7 +39,7 @@ export default [
     icon: mdiResponsive,
   },
   {
-    to: "/",
+    to: "/style",
     label: "Styles",
     icon: mdiPalette,
   },
@@ -75,5 +75,5 @@ export default [
     label: "GitHub",
     icon: mdiGithub,
     target: "_blank",
-  },
+  }, */
 ];

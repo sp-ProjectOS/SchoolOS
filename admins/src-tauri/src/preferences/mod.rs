@@ -7,7 +7,7 @@ pub struct Preferences {
 
 impl Preferences {
     pub fn new() -> Self {
-        let preferences = Preferences { dark_mode: true };
+        let preferences = Preferences { dark_mode: false };
         preferences
     }
 }

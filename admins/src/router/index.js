@@ -1,15 +1,26 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import Style from "@/views/StyleView.vue";
 import Home from "@/views/HomeView.vue";
+import Login from "@/views/LoginView.vue";
+
 
 const routes = [
+
 	{
 		meta: {
-			title: "Select style",
+			title: "Login",
 		},
 		path: "/",
-		name: "home",
-		component:Home,
+		name: "login",
+		component: Login,
+	},
+	{
+		meta: {
+			title: "Logout",
+		},
+		path: "/logout",
+		name: "logout",
+		component: () => import("@/views/LogoutView.vue"),
 	},
 	{
 		meta: {
@@ -69,14 +80,14 @@ const routes = [
 		name: "responsive",
 		component: () => import("@/views/ResponsiveView.vue"),
 	},
-	{
+	/* {
 		meta: {
 			title: "Login",
 		},
 		path: "/login",
 		name: "login",
 		component: () => import("@/views/LoginView.vue"),
-	},
+	}, */
 	{
 		meta: {
 			title: "Error",
@@ -85,14 +96,23 @@ const routes = [
 		name: "error",
 		component: () => import("@/views/ErrorView.vue"),
 	},
+	{
+		meta: {
+			title: "404",
+		},
+		path: "/:pathMatch(.*)*",
+		name: "not-found",
+		component: () => import("@/views/NotFoundView.vue"),
+	}
 ];
 
 const router = createRouter({
-	history: createWebHashHistory(),
+	history: createWebHistory(),
 	routes,
 	scrollBehavior(to, from, savedPosition) {
 		return savedPosition || { top: 0 };
 	},
+	
 });
 
 export default router;

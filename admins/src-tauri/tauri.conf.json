@@ -7,7 +7,7 @@
 		"distDir": "../dist"
 	},
 	"package": {
-		"productName": "schoolos-dashboard",
+		"productName": "SchoolOS Dashboard",
 		"version": "0.1.0"
 	},
 	"tauri": {
