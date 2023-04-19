@@ -1,11 +1,11 @@
 [package]
-name = "app"
+name = "schoolos-dashboard"
 version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
-license = ""
+description = "The Admin Dashboard for SchoolOS"
+authors = ["GaryCraft"]
+license = "MIT"
 repository = ""
-default-run = "app"
+default-run = "schoolos-dashboard"
 edition = "2021"
 rust-version = "1.59"
 
@@ -17,7 +17,16 @@ tauri-build = { version = "1.2.1", features = [] }
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.2.4", features = [] }
+tauri = { version = "1.2.4", features = ["window-close", "window-create", "window-request-user-attention", "window-set-focus"] }
+
+[dependencies.reqwest]
+version = "0.11.13"
+features = ["json"]
+
+[dependencies.rocket]
+version = "0.5.0-rc.3"
+default-features = false
+features = ["tls"]
 
 [features]
 # by default Tauri runs in production mode

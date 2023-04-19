@@ -1,18 +1,20 @@
-mod preferences;
+#[macro_use] extern crate rocket;
 
-#[tauri::command]
-fn get_local_preferences() -> String {
-    let preferences = crate::preferences::get_local_preferences();
-    serde_json::to_string(&preferences).unwrap()
-}
+mod account;
+mod storage;
+mod httpserver;
 
 #[cfg_attr(
     all(not(debug_assertions), target_os = "windows"),
     windows_subsystem = "windows"
 )]
-fn main() {
+#[rocket::main]
+async fn main() {
+	rocket::tokio::spawn(async {
+		crate::httpserver::get_prebuilt().launch().await;
+	});
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![get_local_preferences])
+        .invoke_handler(tauri::generate_handler![crate::account::login])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

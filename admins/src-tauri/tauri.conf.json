@@ -4,7 +4,8 @@
 		"beforeBuildCommand": "npm run build",
 		"beforeDevCommand": "npm run dev",
 		"devPath": "http://localhost:5173",
-		"distDir": "../dist"
+		"distDir": "../dist",
+		"withGlobalTauri": true
 	},
 	"package": {
 		"productName": "SchoolOS Dashboard",
@@ -12,7 +13,39 @@
 	},
 	"tauri": {
 		"allowlist": {
-			"all": false
+			"all": false,
+			"window": {
+				"all": false,
+				"center": false,
+				"close": true,
+				"create": true,
+				"hide": false,
+				"maximize": false,
+				"minimize": false,
+				"print": false,
+				"requestUserAttention": true,
+				"setAlwaysOnTop": false,
+				"setCursorGrab": false,
+				"setCursorIcon": false,
+				"setCursorPosition": false,
+				"setCursorVisible": false,
+				"setDecorations": false,
+				"setFocus": true,
+				"setFullscreen": false,
+				"setIcon": false,
+				"setIgnoreCursorEvents": false,
+				"setMaxSize": false,
+				"setMinSize": false,
+				"setPosition": false,
+				"setResizable": false,
+				"setSize": false,
+				"setSkipTaskbar": false,
+				"setTitle": false,
+				"show": false,
+				"startDragging": false,
+				"unmaximize": false,
+				"unminimize": false
+			}
 		},
 		"bundle": {
 			"active": true,
