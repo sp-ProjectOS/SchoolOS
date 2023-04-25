@@ -11,12 +11,14 @@ fn index() -> &'static str {
 }
 
 #[get("/oauth?<code>&<state>&<scope>")]
-fn oauth(code: String, state: String, scope: String) {
+async fn oauth(code: String, state: String, scope: String) -> Result< rocket::fs::NamedFile, rocket::response::status::NotFound<String>> {
 	// Get the code from the url
 	// Send a request to the oauth2 server to get the token
 	// Save the token in the storage
 	// Close the window
 	println!("Code: {}", code);
+
+	rocket::fs::NamedFile::open("../closewindow.html").await.map_err(|_| rocket::response::status::NotFound("Not found".to_string()))
 }
 
 pub fn get_prebuilt() -> rocket::Rocket<rocket::Build> {
