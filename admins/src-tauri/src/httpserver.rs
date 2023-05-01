@@ -79,7 +79,9 @@ async fn oauth(code: String, state: String, scope: String) -> &'static str {
 pub fn get_prebuilt() -> rocket::Rocket<rocket::Build> {
     let figment = rocket::Config::figment()
         .merge(("port", 4445))
-        .merge(("address", "0.0.0.0"));
+        .merge(("address", "0.0.0.0"))
+		// Disable console logging
+		.merge(("log_level", "off"));
     let rocket = rocket::custom(figment)
         .mount("/", routes![index])
         .mount("/", routes![oauth])
