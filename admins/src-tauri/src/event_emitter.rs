@@ -1,5 +1,5 @@
-use std::sync::Mutex;
 use event_emitter_rs::EventEmitter;
+use std::sync::Mutex;
 
 // Use lazy_static! because the size of EventEmitter is not known at compile time
 lazy_static! {

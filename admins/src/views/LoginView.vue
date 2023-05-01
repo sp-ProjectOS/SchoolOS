@@ -1,7 +1,5 @@
 <script setup>
 import { invoke } from "@tauri-apps/api";
-import { reactive } from "vue";
-import { useRouter } from "vue-router";
 import { mdiLogin } from "@mdi/js";
 import SectionFullScreen from "@/components/SectionFullScreen.vue";
 import CardBox from "@/components/CardBox.vue";
@@ -9,14 +7,14 @@ import BaseButton from "@/components/BaseButton.vue";
 import BaseButtons from "@/components/BaseButtons.vue";
 import LayoutGuest from "@/layouts/LayoutGuest.vue";
 
-const router = useRouter();
-
 const submit = () => {
+	console.log("Login");
 	invoke("login").then((response) => {
-		if (response.error) {
-			return;
+		if (response.contains("error")) {
+			console.log("Error: " + response);
+		} else {
+			console.log("Success: " + response);
 		}
-		router.push({ name: "dashboard" });
 	});
 };
 </script>

@@ -1,0 +1,6 @@
+[oauth2]
+server_uri = "https://oauth2.our-space.xyz"
+client_id = "bafd0b60-6dee-4c9f-8876-8efa4de1e7e5"
+client_secret = "averysecretsecret"
+redirect_uri = "http://localhost:4445/oauth"
+scope = ["id", "profile", "email", "offline_access"]

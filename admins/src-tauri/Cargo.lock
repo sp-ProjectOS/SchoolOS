@@ -718,6 +718,7 @@ dependencies = [
  "atomic",
  "pear",
  "serde",
+ "serde_json",
  "toml 0.5.11",
  "uncased",
  "version_check",
@@ -2604,6 +2605,7 @@ name = "schoolos-dashboard"
 version = "0.1.0"
 dependencies = [
  "event-emitter-rs",
+ "figment",
  "lazy_static",
  "reqwest",
  "rocket",

@@ -1,7 +1,6 @@
+use crate::event_emitter::EVENT_EMITTER;
 use serde::{Deserialize, Serialize};
 use tauri::Runtime;
-use tauri::Manager;
-use crate::event_emitter::EVENT_EMITTER;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AccountDetails {
@@ -21,49 +20,48 @@ impl AccountDetails {
 }
 
 #[tauri::command]
-pub async fn login<R: Runtime>(app: tauri::AppHandle<R>, window: tauri::Window<R>) {
-	// Create a new window
+pub async fn login<R: Runtime>(app: tauri::AppHandle<R>, window: tauri::Window<R>) -> String {
+    // Create a new window
     // Use Oauth2 to get the token
     // Save the token in the storage
-
-	//Get oauth url from the oauth2 server using request
-	
-	/* let client = reqwest::Client::new(); */
-
-	/* let oauthurl_res = match client
-        .get("")
-        .send()
-        .await{
-			Ok(r) => r,
-			Err(e) => {
-				println!("Error getting URL: {}", e);
-				return;
-			}
-		};
-
-        let oauth_url = match oauthurl_res
-            .text()
-            .await{
-				Ok(r) => r,
-				Err(e) => {
-					println!("Error getting URL: {}", e);
-					return;
-				}
-			};
-	
-	println!("Oauth URL: {}", oauth_url); */
-
+	let oauth_config = crate::config::get_config().oauth2;
+	let scope_str = oauth_config.scope.join("%20");
+	let oauth_url = format!(
+		"{}/oauth2/auth?client_id={}&response_type=code&redirect_uri={}&scope={}&state=12345678",
+		oauth_config.server_uri,
+		oauth_config.client_id,
+		oauth_config.redirect_uri,
+		scope_str
+	);
     let new_window = match tauri::WindowBuilder::new(
         &app,
         "oauth2signin",
-        tauri::WindowUrl::External("https://oauth2.our-space.xyz/oauth2/auth?client_id=bafd0b60-6dee-4c9f-8876-8efa4de1e7e5&response_type=code&redirect_uri=http://localhost:4445/oauth&scope=id%20profile%20email&state=12345678".parse().unwrap()),
-    ).center()
+        tauri::WindowUrl::External(oauth_url.parse().unwrap()),
+    )
+	.center()
+	.title("Sign in")
     .build(){
 		Ok(w) => w,
 		Err(e) => {
 			println!("Error creating window: {}", e);
-			return;
+			return String::from("error");
 		}
 	};
+
+    EVENT_EMITTER
+        .lock()
+        .unwrap()
+        .on("oauth2_code_received", move |_: ()| {
+            new_window.close().unwrap();
+			window.emit("navigate_to", "dashboard").unwrap();
+        });
+	
+	String::from("ok")
 }
 
+#[tauri::command]
+pub async fn logout<R: Runtime>(app: tauri::AppHandle<R>, window: tauri::Window<R>) {
+	// Remove the token from the storage
+	// Navigate to the login page
+	window.emit("navigate_to", "/").unwrap();
+}

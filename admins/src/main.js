@@ -6,6 +6,7 @@ import router from "./router";
 import { useMainStore } from "@/stores/main.js";
 import { useStyleStore } from "@/stores/style.js";
 import { darkModeKey, styleKey } from "@/config.js";
+import { listen } from '@tauri-apps/api/event';
 
 import "./css/main.css";
 
@@ -36,7 +37,7 @@ if (
 }
 
 /* Default title tag */
-const defaultDocumentTitle = "Admin One Vue 3 Tailwind";
+const defaultDocumentTitle = "SchoolOS";
 
 /* Set document title from route meta */
 router.afterEach((to) => {
@@ -44,3 +45,4 @@ router.afterEach((to) => {
     ? `${to.meta.title} — ${defaultDocumentTitle}`
     : defaultDocumentTitle;
 });
+

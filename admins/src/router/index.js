@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Style from "@/views/StyleView.vue";
 import Home from "@/views/HomeView.vue";
 import Login from "@/views/LoginView.vue";
+import { listen } from '@tauri-apps/api/event';
 
 
 const routes = [
