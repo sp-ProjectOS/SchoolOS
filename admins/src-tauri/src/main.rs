@@ -26,6 +26,9 @@ async fn main() {
     });
     tauri::Builder::default()
 		.plugin(tauri_plugin_store::Builder::default().build())
+		.plugin(tauri_plugin_single_instance::init(|app, argv, cwd| {
+            println!("{}, {argv:?}, {cwd}", app.package_info().name);
+        }))
         .invoke_handler(tauri::generate_handler![
 			crate::account::login,
 			crate::account::logout

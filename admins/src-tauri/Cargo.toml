@@ -23,6 +23,7 @@ lazy_static = "1.4.0"
 figment = { version = "0.10", features = ["toml", "env", "json"] }
 
 tauri-plugin-store = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "dev" }
+tauri-plugin-single-instance = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "dev" }
 
 [dependencies.reqwest]
 version = "0.11.13"
