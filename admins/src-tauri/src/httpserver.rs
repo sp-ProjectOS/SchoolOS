@@ -1,5 +1,4 @@
 use crate::event_emitter::EVENT_EMITTER;
-use rocket::fairing::AdHoc;
 
 #[catch(404)]
 fn not_found(req: &rocket::Request) -> String {
@@ -86,13 +85,6 @@ pub fn get_prebuilt() -> rocket::Rocket<rocket::Build> {
         .mount("/", routes![index])
         .mount("/", routes![oauth])
         // Set 404 to redirect to tauri://index.html
-        .register("/", catchers![not_found])
-        .attach(AdHoc::on_liftoff("Liftoff Printer", |_| {
-            Box::pin(async move {
-                println!("Stalling liftoff for a second...");
-                rocket::tokio::time::sleep(std::time::Duration::from_secs(1)).await;
-                println!("And we're off!");
-            })
-        }));
+        .register("/", catchers![not_found]);
     rocket
 }

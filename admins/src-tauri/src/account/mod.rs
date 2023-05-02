@@ -1,8 +1,7 @@
 use crate::event_emitter::EVENT_EMITTER;
-use serde::{Deserialize, Serialize};
 use tauri::Runtime;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+/* #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AccountDetails {
     pub token: String,
     pub cached_name: Option<String>,
@@ -17,7 +16,7 @@ impl AccountDetails {
             cached_avatar_url: None,
         }
     }
-}
+} */
 
 #[tauri::command]
 pub async fn login<R: Runtime>(app: tauri::AppHandle<R>, window: tauri::Window<R>) -> String {
@@ -38,8 +37,10 @@ pub async fn login<R: Runtime>(app: tauri::AppHandle<R>, window: tauri::Window<R
         "oauth2signin",
         tauri::WindowUrl::External(oauth_url.parse().unwrap()),
     )
-	.center()
 	.title("Sign in")
+	.always_on_top(true)
+	.inner_size(1360.0, 768.0)
+	.center()
     .build(){
 		Ok(w) => w,
 		Err(e) => {

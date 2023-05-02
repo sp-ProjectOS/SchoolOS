@@ -16,6 +16,7 @@
     "chart.js": "^3.6.0",
     "numeral": "^2.0.6",
     "pinia": "^2.0.13",
+    "tauri-plugin-store-api": "github:tauri-apps/tauri-plugin-store",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0"
   },

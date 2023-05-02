@@ -1,3 +1,8 @@
+#[cfg_attr(
+    all(not(debug_assertions), target_os = "windows"),
+    windows_subsystem = "windows"
+)]
+
 #[macro_use]
 extern crate rocket;
 #[macro_use]
@@ -5,13 +10,9 @@ extern crate lazy_static;
 mod account;
 mod event_emitter;
 mod httpserver;
-mod storage;
 mod config;
 
-#[cfg_attr(
-    all(not(debug_assertions), target_os = "windows"),
-    windows_subsystem = "windows"
-)]
+
 #[rocket::main]
 async fn main() {
     rocket::tokio::spawn(async {
@@ -24,6 +25,7 @@ async fn main() {
 		};
     });
     tauri::Builder::default()
+		.plugin(tauri_plugin_store::Builder::default().build())
         .invoke_handler(tauri::generate_handler![
 			crate::account::login,
 			crate::account::logout

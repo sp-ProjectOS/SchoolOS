@@ -63,7 +63,9 @@
 				"height": 768,
 				"resizable": true,
 				"title": "SchoolOS Dashboard",
-				"width": 1360
+				"width": 1360,
+				"center": true,
+				"maximized": true
 			}
 		]
 	}
