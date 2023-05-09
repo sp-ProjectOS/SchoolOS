@@ -23,46 +23,44 @@ pub async fn login<R: Runtime>(app: tauri::AppHandle<R>, window: tauri::Window<R
     // Create a new window
     // Use Oauth2 to get the token
     // Save the token in the storage
-	let oauth_config = crate::config::get_config().oauth2;
-	let scope_str = oauth_config.scope.join("%20");
-	let oauth_url = format!(
-		"{}/oauth2/auth?client_id={}&response_type=code&redirect_uri={}&scope={}&state=12345678",
-		oauth_config.server_uri,
-		oauth_config.client_id,
-		oauth_config.redirect_uri,
-		scope_str
-	);
+    let oauth_config = crate::config::get_config().oauth2;
+    let scope_str = oauth_config.scope.join("%20");
+    let oauth_url = format!(
+        "{}/oauth2/auth?client_id={}&response_type=code&redirect_uri={}&scope={}&state=12345678",
+        oauth_config.server_uri, oauth_config.client_id, oauth_config.redirect_uri, scope_str
+    );
     let new_window = match tauri::WindowBuilder::new(
         &app,
         "oauth2signin",
         tauri::WindowUrl::External(oauth_url.parse().unwrap()),
     )
-	.title("Sign in")
-	.always_on_top(true)
-	.inner_size(1360.0, 768.0)
-	.center()
-    .build(){
-		Ok(w) => w,
-		Err(e) => {
-			println!("Error creating window: {}", e);
-			return String::from("error");
-		}
-	};
+    .title("Sign in")
+    .always_on_top(true)
+    .inner_size(1360.0, 768.0)
+    .center()
+    .build()
+    {
+        Ok(w) => w,
+        Err(e) => {
+            //println!("Error creating window: {}", e);
+            return String::from("error");
+        }
+    };
 
     EVENT_EMITTER
         .lock()
         .unwrap()
         .on("oauth2_code_received", move |_: ()| {
             new_window.close().unwrap();
-			window.emit("navigate_to", "dashboard").unwrap();
+            window.emit("navigate_to", "dashboard").unwrap();
         });
-	
-	String::from("ok")
+
+    String::from("ok")
 }
 
 #[tauri::command]
 pub async fn logout<R: Runtime>(app: tauri::AppHandle<R>, window: tauri::Window<R>) {
-	// Remove the token from the storage
-	// Navigate to the login page
-	window.emit("navigate_to", "/").unwrap();
+    // Remove the token from the storage
+    // Navigate to the login page
+    window.emit("navigate_to", "/").unwrap();
 }

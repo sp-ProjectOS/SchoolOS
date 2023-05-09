@@ -27,7 +27,7 @@ pub fn get_config() -> Config {
     {
         Ok(r) => r,
         Err(e) => {
-            println!("Error getting config: {}", e);
+            //println!("Error getting config: {}", e);
             std::process::exit(1);
         }
     };
