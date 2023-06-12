@@ -4,21 +4,40 @@
 			<NuxtLink :to="link.to" v-for="link in links" :key="link.name">
 				<Icon :name="link.icon.name" :size="link.icon.size" :color="link.icon.color" />
 			</NuxtLink>
+			<div class="bottom-nav__item" v-on:click="toggleLateral">
+				<Icon name="menu" :size="2" color="var(--bg-secondary)" />
+			</div>
 		</div>
+	</div>
+	<div class="lateral-menu">
+
 	</div>
 </template>
 <script lang="ts" setup>
+let lateral_visible = true;
 const links = [
 	{
 		name: 'Home',
 		icon: {
 			name: 'home',
 			size: 2,
-			color: 'var(--color-secondary)',
+			color: 'var(--bg-secondary)',
 		},
 		to: '/',
 	},
+	{
+		name: 'Search',
+		icon: {
+			name: "search",
+			size: 2,
+			color: 'var(--bg-secondary)'
+		},
+		to: "/search"
+	}
 ];
+function toggleLateral() {
+	lateral_visible = !lateral_visible;
+}
 </script>
 <style scoped>
 .bottom-nav {
@@ -30,6 +49,7 @@ const links = [
 	background-color: var(--bg-primary);
 	z-index: 1;
 }
+
 .bottom-nav__item {
 	display: flex;
 	align-items: center;
@@ -37,6 +57,7 @@ const links = [
 	width: 100%;
 	height: 100%;
 }
+
 .bottom-nav__item a {
 	display: flex;
 	flex-direction: column;

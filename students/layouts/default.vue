@@ -16,14 +16,14 @@
  */
 :root {
 	--color-primary: #599cff;
-	--color-secondary: #ff6b6b;
-	--bg-primary: #f5f5f5;
+	--color-secondary: #6A2C9E;
+	--bg-primary: #500788;
 	--bg-secondary: #ffffff;
 	--bg-primary-dark: #1b1b1b;
 	--bg-secondary-dark: #2b2b2b;
 }
+
 body {
 	margin: 0;
 }
-
 </style>
