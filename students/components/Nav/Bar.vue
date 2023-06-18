@@ -9,9 +9,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="lateral-menu">
-
-	</div>
+	<NavLateral />
 </template>
 <script lang="ts" setup>
 let lateral_visible = true;

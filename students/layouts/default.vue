@@ -15,7 +15,7 @@
  * SchoolOS Default Theme
  */
 :root {
-	--color-primary: #599cff;
+	--color-primary: #daaeff;
 	--color-secondary: #6A2C9E;
 	--bg-primary: #500788;
 	--bg-secondary: #ffffff;
