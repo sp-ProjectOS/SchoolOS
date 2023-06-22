@@ -1,38 +1,56 @@
 <template>
     <div class="lateral">
-        <div class="user">
+        <div class="lateral-close">
+            <Icon name="close" :size="4" color="var(--bg-secondary)" />
+        </div>
+        <div class="lateral-option">
             <Icon name="account_circle" :size="4" color="var(--bg-secondary)" />
             <p>My account</p>
         </div>
         <div class="qr"></div>
-        <div class="calendar">
+        <div class="lateral-option">
             <Icon name="calendar_month" :size="4" color="var(--bg-secondary)" />
+            <p>My Schedule</p>
+        </div>
+        <div class="lateral-option">
+            <Icon name="qr_code" :size="4" color="var(--bg-secondary)" />
             <p>My Schedule</p>
         </div>
     </div>
 </template>
 <style scoped>
 .lateral {
-    width: 50%;
+    width: 70%;
     background-color: var(--bg-primary);
     position: absolute;
     top: 0;
     right: 0;
-    height: 92.539%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    z-index: 10;
 }
 
-.user,
-.calendar {
+/* .lateral:first-child {
+    justify-content: flex-start;
+}
+ */
+.lateral-close {
+    top: 0.5rem;
+    right: 0.5rem;
+    position: absolute;
+    cursor: pointer;
+}
+
+.lateral-option {
     background-color: var(--color-secondary);
     display: flex;
     margin: 1rem 0;
+    cursor: pointer;
 }
 
-.user p,
-.calendar p {
+.lateral-option p {
     color: white;
     font-size: 1.2rem;
 }

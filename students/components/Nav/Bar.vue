@@ -10,9 +10,12 @@
 		</div>
 	</div>
 	<NavLateral />
+	<div class="search-container">
+		<NavSearch />
+	</div>
 </template>
 <script lang="ts" setup>
-let lateral_visible = true;
+let lateral_visible = ref(true);
 const links = [
 	{
 		name: 'Home',
@@ -34,7 +37,7 @@ const links = [
 	}
 ];
 function toggleLateral() {
-	lateral_visible = !lateral_visible;
+	lateral_visible.value = !lateral_visible.value;
 }
 </script>
 <style scoped>
@@ -54,6 +57,7 @@ function toggleLateral() {
 	justify-content: space-around;
 	width: 100%;
 	height: 100%;
+	cursor: pointer;
 }
 
 .bottom-nav__item a {
@@ -64,5 +68,11 @@ function toggleLateral() {
 	width: 100%;
 	height: 100%;
 	color: var(--color-primary);
+}
+
+.search-container {
+	display: flex;
+	width: 100%;
+	justify-content: center;
 }
 </style>
