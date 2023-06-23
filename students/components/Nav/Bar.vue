@@ -4,18 +4,20 @@
 			<NuxtLink :to="link.to" v-for="link in links" :key="link.name">
 				<Icon :name="link.icon.name" :size="link.icon.size" :color="link.icon.color" />
 			</NuxtLink>
+			<div class="bottom-nav__item" v-on:click="toggleSearch">
+				<Icon name="search" :size="2" color="var(--bg-secondary)" />
+			</div>
 			<div class="bottom-nav__item" v-on:click="toggleLateral">
 				<Icon name="menu" :size="2" color="var(--bg-secondary)" />
 			</div>
 		</div>
 	</div>
-	<NavLateral />
-	<div class="search-container">
-		<NavSearch />
-	</div>
+	<NavSearch v-if="search_visible" @close="toggleClose" />
+	<NavLateral v-if="lateral_visible" @close="toggleLateral" />
 </template>
 <script lang="ts" setup>
-let lateral_visible = ref(true);
+let lateral_visible = ref(false);
+let search_visible = ref(false);
 const links = [
 	{
 		name: 'Home',
@@ -26,7 +28,7 @@ const links = [
 		},
 		to: '/',
 	},
-	{
+	/* {
 		name: 'Search',
 		icon: {
 			name: "search",
@@ -34,10 +36,14 @@ const links = [
 			color: 'var(--bg-secondary)'
 		},
 		to: "/search"
-	}
+	} */
+	
 ];
 function toggleLateral() {
 	lateral_visible.value = !lateral_visible.value;
+}
+function toggleSearch() {
+	search_visible.value = !search_visible.value;
 }
 </script>
 <style scoped>
@@ -68,11 +74,5 @@ function toggleLateral() {
 	width: 100%;
 	height: 100%;
 	color: var(--color-primary);
-}
-
-.search-container {
-	display: flex;
-	width: 100%;
-	justify-content: center;
 }
 </style>

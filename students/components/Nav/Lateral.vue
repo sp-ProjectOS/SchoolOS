@@ -1,6 +1,6 @@
 <template>
     <div class="lateral">
-        <div class="lateral-close">
+        <div class="lateral-close" @click="close">
             <Icon name="close" :size="4" color="var(--bg-secondary)" />
         </div>
         <div class="lateral-option">
@@ -55,3 +55,11 @@
     font-size: 1.2rem;
 }
 </style>
+<script lang="ts" setup>
+// Emit an event to the parent component when the user clicks on the close button
+const emit = defineEmits(['close']);
+
+const close = () => {
+	emit('close');
+};
+</script>
