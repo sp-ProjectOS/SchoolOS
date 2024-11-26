@@ -2,5 +2,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-    schoolos_students_lib::run()
+    confu_badge_lib::run()
 }

@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	::root {
+		--background: 0 0% 100%;
+		--foreground: 0 0% 3.9%;
+
+		--muted: 0 0% 96.1%;
+		--muted-foreground: 0 0% 45.1%;
+
+		--popover: 0 0% 100%;
+		--popover-foreground: 0 0% 3.9%;
+
+		--card: 0 0% 100%;
+		--card-foreground: 0 0% 3.9%;
+
+		--border: 283 85% 57%;
+		--input: 0 0% 89.8%;
+
+		--primary: 0 0% 9%;
+		--primary-foreground: 0 0% 98%;
+
+		--secondary: 0 0% 96.1%;
+		--secondary-foreground: 0 0% 9%;
+
+		--accent: 0 0% 96.1%;
+		--accent-foreground: 0 0% 9%;
+
+		--destructive: 342 84% 60%;
+		--destructive-foreground: 0 0% 98%;
+
+		--ring: 0 0% 3.9%;
+
+		--radius: 0.5rem;
+	}
+
+	.light {
+		--background: 0 0% 100%;
+		--foreground: 298 85% 57%;
+
+		--muted: 290 85% 57%;
+		--muted-foreground: 286 85% 57%;
+
+		--popover: 0 0% 95%;
+		--popover-foreground: 298 85% 57%;
+
+		--card: 0 0% 100%;
+		--card-foreground: 300 85% 57%;
+
+		--border: 295 85% 57%;
+		--input: 298 85% 57%;
+
+		--primary: 293 85% 57%;
+		--primary-foreground: 295 85% 57%;
+
+		--secondary: 0 0% 14.9%;
+		--secondary-foreground: 0 0% 98%;
+
+		--accent: 288 85% 57%;
+		--accent-foreground: 0 0% 95%;
+
+		--destructive: 310 63% 31%;
+		--destructive-foreground: 0 0% 98%;
+
+		--ring: 0 0% 83.1%;
+	}
+
+	.dark {
+		--background: 344 85% 3%;
+		--foreground: 283 85% 57%;
+
+		--muted: 283 85% 57%;
+		--muted-foreground: 283 85% 57%;
+
+		--popover: 283 85% 3%;
+		--popover-foreground: 283 85% 57%;
+
+		--card: 283 85% 3%;
+		--card-foreground: 283 85% 57%;
+
+		--border: 283 100% 95%;
+		--input: 283 85% 57%;
+
+		--primary: 283 85% 57%;
+		--primary-foreground: 283 85% 57%;
+
+		--secondary: 283 85% 57%;
+		--secondary-foreground: 283 85% 57%;
+
+		--accent: 283 85% 57%;
+		--accent-foreground: 283 85% 3%;
+
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 283 85% 57%;
+
+		--ring: 0 0% 83.1%;
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+	}
+}
+
+@font-face {
+	font-family: "Carter One";
+	src: url(/src/assets/fonts/carterone.ttf);
+}

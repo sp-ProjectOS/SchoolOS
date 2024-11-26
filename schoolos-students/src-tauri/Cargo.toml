@@ -1,22 +1,31 @@
 [package]
 name = "schoolos-students"
 version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
+description = "SchoolOS is your all-in-one school companion"
+authors = ["GaryCraft", "stargazer"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [lib]
 name = "schoolos_students_lib"
-crate-type = ["staticlib", "cdylib", "rlib"]
+crate-type = ["lib", "cdylib", "staticlib"]
 
 [build-dependencies]
-tauri-build = { version = "2.0.0-rc", features = [] }
+tauri-build = { version = "2.0.1-beta", features = [] }
 
 [dependencies]
-tauri = { version = "2.0.0-rc", features = [] }
-tauri-plugin-shell = "2.0.0-rc"
+tauri = { version = "2.0.1-beta", features = [] }
+tauri-plugin-shell = "2.0.1-beta"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 
+# [target.'cfg(android)'.dependencies]
+jni = "0.19.0"
+once_cell = "1.19.0"
+thiserror = "1.0.56"
+jni-utils = "0.1.1"
+tokio-stream = "0.1.14"
+tauri-plugin-fs = "2.0.1"
+tauri-plugin-http = "2.0.1"
+tauri-plugin-sql = { version = "2.0.1", features = ["sqlite"] }
