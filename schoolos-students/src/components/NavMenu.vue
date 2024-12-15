@@ -10,6 +10,7 @@ import { LucideAlignJustify } from 'lucide-vue-next'
 
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { RouterLink } from 'vue-router'
 
 import LangSelect from '@/components/LangSelect.vue'
 import DarkMode from '@/components/DarkMode.vue'
@@ -33,7 +34,7 @@ const { t, locale } = useI18n({
 </script>
 
 <template>
-	<Collapsible v-model:open="isOpen" class="absolute top-0 left-0">
+	<Collapsible v-model:open="isOpen" class="absolute top-0 left-0 nav-menu">
 		<div class="flex items-center justify-start">
 			<CollapsibleTrigger as-child>
 				<Button variant="ghost" size="sm" class="flex w-12 rounded-br-3xl border p-0 animate-in animate-out"
@@ -53,19 +54,19 @@ const { t, locale } = useI18n({
 			</CollapsibleTrigger>
 		</div>
 
-		<CollapsibleContent class="c-animated bg-gradient-to-br from-teal-300 to-cyan-300 w-screen sm:w-[90%]"
-			:style="{ width: isOpen ? '' : '0' }">
-			<nav class="h-[90svh] justify-start flex flex-col p-2 c-nav">
-				<a href="#"
+		<CollapsibleContent class="c-animated border w-screen sm:w-[90%]" :style="{ width: isOpen ? '' : '0' }">
+			<nav class="h-[90svh] justify-start flex flex-col p-2 c-nav
+			bg-background">
+				<RouterLink to="/"
 					class="block p-2 text-primary hover:text-secondary font-bold text-center hover:bg-primary border-primary border-b">
 					{{ t('home') }}
-				</a>
-				<a href="#"
+				</RouterLink>
+				<RouterLink to="/organizer"
 					class="block p-2 text-primary hover:text-secondary font-bold text-center hover:bg-primary border-primary border-b">
 					{{ t('org') }}
-				</a>
+				</RouterLink>
 
-				<div class="mt-auto gap-2 flex">
+				<div class="mt-auto gap-2 flex" v-if="isOpen">
 					<DarkMode />
 					<LangSelect />
 				</div>
@@ -74,6 +75,10 @@ const { t, locale } = useI18n({
 	</Collapsible>
 </template>
 <style scoped>
+.nav-menu {
+	z-index: 20;
+}
+
 .c-animated {
 	transition: width 0.3s ease-in-out;
 	transition-behavior: smooth;

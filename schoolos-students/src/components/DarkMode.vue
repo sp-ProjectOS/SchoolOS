@@ -4,6 +4,7 @@ import { Icon } from '@iconify/vue'
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { useI18n } from 'vue-i18n';
+import { onMounted } from 'vue';
 
 const mode = useColorMode()
 const { t } = useI18n({
@@ -21,6 +22,10 @@ const { t } = useI18n({
 			auto: 'System'
 		}
 	}
+})
+
+onMounted(() => {
+	mode.value = useColorMode().value
 })
 
 </script>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
-
-import { Card } from '@/components/ui/card';
+import Toaster from '@/components/ui/toast/Toaster.vue'
+import DarkMode from '@/components/DarkMode.vue';
 
 import NavMenu from '@/components/NavMenu.vue';
 
@@ -21,6 +21,13 @@ const { t } = useI18n({
 <template>
 	<main class="h-screen w-screen">
 		<NavMenu />
+		<RouterView />
+
+		<!-- Invisible, load without click -->
+		<div class="hidden">
+			<DarkMode />
+		</div>
+		<Toaster />
 	</main>
 </template>
 

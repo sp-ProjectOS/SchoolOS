@@ -1,4 +1,3 @@
-import { TableColumn, TableMode } from '@/stores/Statistics'
 import type { ColumnDef } from '@tanstack/vue-table'
 import { h } from 'vue'
 import { i18n } from '@/main'
