@@ -11,7 +11,7 @@ const { t } = useI18n({
 			description: 'SchoolOS is a platform that helps you manage your school life.',
 		},
 		es: {
-			welcome: 'Bienvenid@ a',
+			welcome: `Bienvenid{'@'} a`,
 			name: 'SchoolOS',
 			description: 'SchoolOS es una plataforma que te ayuda a gestionar tu vida escolar.',
 		}
@@ -21,7 +21,7 @@ const { t } = useI18n({
 
 
 <template>
-	<div class="h-screen w-screen flex justify-center items-center">
+	<div class="h-full w-full flex justify-center items-center">
 		<Card>
 			<CardHeader>
 				<CardTitle>

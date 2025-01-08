@@ -120,7 +120,6 @@ function saveNewTask() {
 					</DialogFooter>
 				</DialogScrollContent>
 			</Dialog>
-
 		</div>
 	</OrganizerLayout>
 </template>

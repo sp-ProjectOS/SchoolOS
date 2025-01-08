@@ -1,40 +1,166 @@
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
 
 import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from '@/components/ui/collapsible'
-import { LucideAlignJustify } from 'lucide-vue-next'
 
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
 
 import LangSelect from '@/components/LangSelect.vue'
 import DarkMode from '@/components/DarkMode.vue'
 
-const isOpen = ref(false)
+
+import {
+	Sidebar,
+	SidebarContent,
+	SidebarFooter,
+	SidebarGroup,
+	SidebarGroupLabel,
+	SidebarHeader,
+	SidebarInset,
+	SidebarMenu,
+	SidebarMenuButton,
+	SidebarMenuItem,
+	SidebarMenuSub,
+	SidebarMenuSubButton,
+	SidebarMenuSubItem,
+	SidebarProvider,
+	SidebarTrigger,
+} from '@/components/ui/sidebar'
+import { Icon } from '@iconify/vue/dist/iconify.js'
 
 
-const { t, locale } = useI18n({
+
+const { t } = useI18n({
 	useScope: 'global',
 	messages: {
 		es: {
 			home: 'Inicio',
-			org: "Organizador"
+			organizer: {
+				org: 'Organizador',
+				scheduling: 'Planificación',
+				timer: 'Temporizador',
+				tasklist: 'Lista de Tareas',
+				agenda: 'Agenda',
+			}
 		},
 		en: {
 			home: 'Home',
-			org: "Scheduling"
+			organizer: {
+				org: 'Organizer',
+				scheduling: 'Scheduling',
+				timer: 'Timer',
+				tasklist: 'Task List',
+				agenda: 'Agenda',
+			}
 		}
 	}
 })
+
+const navdata = [
+	{
+		title: computed(() => t('home')),
+		isActive: true,
+		url: '/',
+		icon: "mdi:home",
+		items: null
+	},
+	{
+		title: computed(() => t('organizer.org')),
+		isActive: true,
+		url: '/organizer',
+		icon: "mdi:calendar",
+		items: [
+			{
+				title: computed(() => t('organizer.timer')),
+				url: '/organizer/timer'
+			},
+			{
+				title: computed(() => t('organizer.tasklist')),
+				url: '/organizer/tasklist'
+			},
+			{
+				title: computed(() => t('organizer.agenda')),
+				url: '/organizer/agenda'
+			},
+		]
+	}
+] as const
+
+
 </script>
 
 <template>
-	<Collapsible v-model:open="isOpen" class="absolute top-0 left-0 nav-menu">
+	<SidebarProvider>
+		<Sidebar variant="floating">
+			<SidebarHeader>
+				<span class="mx-auto text-lg" style="font-family: Carter One;">
+					SchoolOS
+				</span>
+			</SidebarHeader>
+			<SidebarContent>
+				<SidebarGroup>
+					<!-- <SidebarGroupLabel>
+						{{ t('home') }}
+					</SidebarGroupLabel> -->
+					<SidebarMenu>
+						<template v-for="item in navdata" :key="item.url">
+							<RouterLink :to="item.url" v-if="!item.items"
+								class="flex p-2 text-primary font-bold text-center border-primary border-b hover:bg-primary hover:text-secondary justify-start gap-4">
+								<Icon :icon="item.icon" class="h-6 w-6" />
+								{{ item.title }}
+							</RouterLink>
+							<Collapsible as-child :default-open="item.isActive" class="group/collapsible" v-else>
+								<SidebarMenuItem
+									class="flex flex-col p-2 text-primary font-bold text-center border-primary border-b">
+									<CollapsibleTrigger as-child>
+										<SidebarMenuButton :tooltip="item.title.value">
+											<Icon :icon="item.icon" class="h-6 w-6" />
+											<span>{{ item.title }}</span>
+											<Icon icon="mdi:chevron-right"
+												class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+										</SidebarMenuButton>
+									</CollapsibleTrigger>
+									<CollapsibleContent>
+										<SidebarMenuSub>
+											<SidebarMenuSubItem v-for="subItem in item.items" :key="subItem.title.value">
+												<SidebarMenuSubButton as-child
+													class="flex p-2 text-primary font-bold text-center hover:bg-primary hover:text-secondary justify-start gap-4">
+													<RouterLink :to="subItem.url">
+														<span>{{ subItem.title }}</span>
+													</RouterLink>
+												</SidebarMenuSubButton>
+											</SidebarMenuSubItem>
+										</SidebarMenuSub>
+									</CollapsibleContent>
+								</SidebarMenuItem>
+							</Collapsible>
+						</template>
+					</SidebarMenu>
+				</SidebarGroup>
+			</SidebarContent>
+			<SidebarFooter>
+				<div class="mt-auto gap-2 flex">
+					<DarkMode />
+					<LangSelect />
+				</div>
+			</SidebarFooter>
+		</Sidebar>
+		<SidebarInset>
+			<div class="fixed flex items-center justify-start gap-2 p-2 h-14">
+				<SidebarTrigger />
+			</div>
+			<!-- <SidebarRail /> -->
+			<slot />
+		</SidebarInset>
+
+
+	</SidebarProvider>
+	<!-- <Collapsible v-model:open="isOpen" class="absolute top-0 left-0 nav-menu">
 		<div class="flex items-center justify-start">
 			<CollapsibleTrigger as-child>
 				<Button variant="ghost" size="sm" class="flex w-12 rounded-br-3xl border p-0 animate-in animate-out"
@@ -72,7 +198,7 @@ const { t, locale } = useI18n({
 				</div>
 			</nav>
 		</CollapsibleContent>
-	</Collapsible>
+	</Collapsible> -->
 </template>
 <style scoped>
 .nav-menu {

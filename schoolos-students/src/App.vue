@@ -4,6 +4,10 @@ import Toaster from '@/components/ui/toast/Toaster.vue'
 import DarkMode from '@/components/DarkMode.vue';
 
 import NavMenu from '@/components/NavMenu.vue';
+import { SidebarProvider } from './components/ui/sidebar';
+import { useAppLoadingStore, LoadingComponent } from './router/loader';
+
+const appLoadingStore = useAppLoadingStore();
 
 const { t } = useI18n({
 	messages: {
@@ -20,9 +24,10 @@ const { t } = useI18n({
 
 <template>
 	<main class="h-screen w-screen">
-		<NavMenu />
-		<RouterView />
-
+		<NavMenu>
+			<RouterView v-show="!appLoadingStore.loading" />
+			<LoadingComponent v-show="appLoadingStore.loading" />
+		</NavMenu>
 		<!-- Invisible, load without click -->
 		<div class="hidden">
 			<DarkMode />
