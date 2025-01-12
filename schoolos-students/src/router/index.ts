@@ -1,10 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import HomeView from '@/views/Home.vue'
-
-
 const routes = [
-	{ path: '/', component: HomeView },
+	{ path: '/', component: () => import('@/views/Home.vue') },
 	{ path: '/organizer', component: () => import('@/views/organizer/Agenda.vue') },
 	{ path: '/organizer/agenda', component: () => import('@/views/organizer/Agenda.vue') },
 	{ path: '/organizer/timer', component: () => import('@/views/organizer/Pomodoro.vue') },
