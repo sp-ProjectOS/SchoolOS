@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { internalIpV4 } from "internal-ip";
+import { internalIpV4 } from "./node_modules/internal-ip";
 import tailwind from "tailwindcss"
 import autoprefixer from "autoprefixer"
 import path from "path";
