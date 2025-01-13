@@ -2,11 +2,8 @@
 import { useI18n } from 'vue-i18n';
 import {
 	NavigationMenu,
-	NavigationMenuContent,
 	NavigationMenuItem,
-	NavigationMenuLink,
 	NavigationMenuList,
-	NavigationMenuTrigger,
 	navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
 

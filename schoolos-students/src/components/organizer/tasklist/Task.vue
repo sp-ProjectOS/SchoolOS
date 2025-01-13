@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { Card, CardContent, CardHeader, CardDescription, CardFooter, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardDescription, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ScheduledTask, useOrganizerStore } from '@/stores/organizer';
-import { ref } from 'vue';
 import { Button } from '@/components/ui/button';
 import { TrashIcon, Check } from 'lucide-vue-next';
-import { CalendarDateTime, DateValue, fromDate, getLocalTimeZone } from '@internationalized/date'
+import { DateValue } from '@internationalized/date'
 
 
 const organizerStore = useOrganizerStore();

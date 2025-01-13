@@ -6,7 +6,7 @@ import {
 	CollapsibleTrigger,
 } from '@/components/ui/collapsible'
 
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
 
@@ -19,7 +19,6 @@ import {
 	SidebarContent,
 	SidebarFooter,
 	SidebarGroup,
-	SidebarGroupLabel,
 	SidebarHeader,
 	SidebarInset,
 	SidebarMenu,

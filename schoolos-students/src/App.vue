@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+//import { useI18n } from 'vue-i18n';
 import Toaster from '@/components/ui/toast/Toaster.vue'
 import DarkMode from '@/components/DarkMode.vue';
 
 import NavMenu from '@/components/NavMenu.vue';
-import { SidebarProvider } from './components/ui/sidebar';
 import { useAppLoadingStore, LoadingComponent } from './router/loader';
 
 const appLoadingStore = useAppLoadingStore();
 
-const { t } = useI18n({
+/* const { t } = useI18n({
 	messages: {
 		en: {
 
@@ -18,7 +17,7 @@ const { t } = useI18n({
 
 		}
 	}
-});
+}); */
 
 </script>
 
