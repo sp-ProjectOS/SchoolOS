@@ -2,7 +2,7 @@ name: Build Dashboard
 on:
   push:
     tags:
-      - "v*"
+      - "admins-v*"
   workflow_dispatch:
 
 jobs:
