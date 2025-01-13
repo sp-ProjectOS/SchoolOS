@@ -12,18 +12,18 @@ rust-version = "1.59"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
-tauri-build = { version = "1.2.1", features = [] }
+tauri-build = { version = "2", features = [] }
 
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.2.4", features = ["window-all"] }
+tauri = { version = "2", features = [] }
 event-emitter-rs = "0.1.4"
 lazy_static = "1.4.0"
 figment = { version = "0.10", features = ["toml", "env", "json"] }
 
-tauri-plugin-store = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "dev" }
-tauri-plugin-single-instance = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "dev" }
+tauri-plugin-store = { version = "2" }
+tauri-plugin-single-instance = { version = "2" }
 
 [dependencies.reqwest]
 version = "0.11.13"

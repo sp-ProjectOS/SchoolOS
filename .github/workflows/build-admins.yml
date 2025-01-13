@@ -1,20 +1,17 @@
-name: 'Build Students App'
-
+name: Build Dashboard
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
-    paths:
-      - 'students/**'
     tags:
-      - "students-v*"
+      - "admins-v*"
+    paths:
+      - 'admins/**'
+  workflow_dispatch:
 
 jobs:
   publish-tauri:
     defaults:
       run:
-        working-directory: ./students
+        working-directory: ./admins
     permissions:
       contents: write
     strategy:
