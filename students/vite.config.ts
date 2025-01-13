@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { internalIpV4 } from "./node_modules/internal-ip";
+import { internalIpV4 } from "internal-ip";
 import tailwind from "tailwindcss"
 import autoprefixer from "autoprefixer"
 import path from "path";
@@ -9,6 +9,7 @@ import { templateCompilerOptions } from '@tresjs/core'
 const mobile = !!/android|ios/.exec(process.env.TAURI_ENV_PLATFORM);
 
 // https://vitejs.dev/config/
+// @ts-expect-error
 export default defineConfig(async () => ({
 	css: {
 		postcss: {
