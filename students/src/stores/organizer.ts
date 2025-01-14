@@ -84,5 +84,9 @@ export const useOrganizerStore = defineStore("organizer", () => {
 			pick: ["scheduledTasks"],
 			storage: localStorage
 		}
-	]
+	],
+	tauri: {
+		saveOnChange: true,
+		filterKeys: ["scheduledTasks"]
+	}
 });

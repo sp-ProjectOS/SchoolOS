@@ -31,6 +31,7 @@
     "radix-vue": "^1.9.11",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
+    "tauri-plugin-pinia": "^1.0.0",
     "three": "^0.169.0",
     "vaul-vue": "^0.1.2",
     "vue": "^3.3.4",

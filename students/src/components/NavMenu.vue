@@ -31,6 +31,8 @@ import {
 	SidebarTrigger,
 } from '@/components/ui/sidebar'
 import { Icon } from '@iconify/vue/dist/iconify.js'
+import ApplicationSettings from './ApplicationSettings.vue'
+import { isUsingTauri } from '@/lib/compatibility'
 
 
 
@@ -146,6 +148,7 @@ const navdata = [
 				<div class="mt-auto gap-2 flex">
 					<DarkMode />
 					<LangSelect />
+					<ApplicationSettings v-if="isUsingTauri()" />
 				</div>
 			</SidebarFooter>
 		</Sidebar>
