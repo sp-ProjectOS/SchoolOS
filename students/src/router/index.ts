@@ -6,6 +6,7 @@ const routes = [
 	{ path: '/organizer/agenda', component: () => import('@/views/organizer/Agenda.vue') },
 	{ path: '/organizer/timer', component: () => import('@/views/organizer/Pomodoro.vue') },
 	{ path: '/organizer/tasklist', component: () => import('@/views/organizer/TaskList.vue') },
+	{ path: "/organizer/schedule", component: () => import("@/views/organizer/Schedule.vue") },
 	{ path: '/:pathMatch(.*)*', redirect: '/' }
 ]
 

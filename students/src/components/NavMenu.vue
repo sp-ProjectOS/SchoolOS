@@ -47,6 +47,7 @@ const { t } = useI18n({
 				timer: 'Temporizador',
 				tasklist: 'Lista de Tareas',
 				agenda: 'Agenda',
+				schedule: 'Horario',
 			}
 		},
 		en: {
@@ -57,6 +58,7 @@ const { t } = useI18n({
 				timer: 'Timer',
 				tasklist: 'Task List',
 				agenda: 'Agenda',
+				schedule: 'Schedule',
 			}
 		}
 	}
@@ -87,6 +89,10 @@ const navdata = [
 			{
 				title: computed(() => t('organizer.agenda')),
 				url: '/organizer/agenda'
+			},
+			{
+				title: computed(() => t('organizer.schedule')),
+				url: '/organizer/schedule'
 			},
 		]
 	}
